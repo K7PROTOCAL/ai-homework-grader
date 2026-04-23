@@ -27,8 +27,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 # 配置API密钥
-import os
-API_KEY = os.environ.get("API_KEY", "default_value") 
+API_KEY = os.environ.get("API_KEY", "default_value")
 
 # 获取脚本所在目录的绝对路径
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -1430,7 +1429,8 @@ def main():
                                 # 添加删除按钮（除了管理员账户）
                                 if role != "管理员":
                                     if st.button(f"删除{role}账户", key=f"delete_account_{account['id']}"):
-                                        accounts = [acc for acc in accounts if acc['id'] != account['id']]
+                                        account_id = account['id']
+                                        accounts = [acc for acc in accounts if acc['id'] != account_id]
                                         save_accounts(accounts)
                                         st.success(f"{role}账户已删除")
                                         st.rerun()
@@ -1471,7 +1471,8 @@ def main():
                             st.success(submission['grading_result'])
                             # 添加删除按钮
                             if st.button(f"删除记录", key=f"admin_delete_{submission['id']}"):
-                                submissions = [sub for sub in submissions if sub['id'] != submission['id']]
+                                submission_id = submission['id']
+                                submissions = [sub for sub in submissions if sub['id'] != submission_id]
                                 save_submissions(submissions)
                                 st.success("记录已删除")
                                 st.rerun()
