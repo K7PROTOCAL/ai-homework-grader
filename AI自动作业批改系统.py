@@ -28,7 +28,12 @@ st.set_page_config(
 )
 # 配置API密钥
 import os
-API_KEY = os.environ.get("API_KEY", "sk-799a856d82094530a874c97496c79506")
+API_KEY = os.environ.get("API_KEY")
+
+# 添加错误处理，确保API密钥存在
+if not API_KEY:
+    st.error("API密钥未配置，请在Streamlit Cloud中设置API_KEY环境变量")
+    st.stop()
 
 # 获取脚本所在目录的绝对路径
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
