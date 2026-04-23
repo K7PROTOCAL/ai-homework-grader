@@ -27,7 +27,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 # 配置API密钥
-API_KEY = "sk-799a856d82094530a874c97496c79506"
+import os
+API_KEY = os.environ.get("API_KEY", "default_value") 
 
 # 获取脚本所在目录的绝对路径
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
